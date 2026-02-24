@@ -9,6 +9,13 @@ const app = express();
 app.use(cors({ origin: config.corsOrigin }));
 app.use(express.json());
 
+
+// ADD THIS HEALTH CHECK ROUTE HERE
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok', message: 'Server is active' });
+});
+
+
 // Serve Static Files
 app.use(express.static(require('path').join(__dirname, '../public')));
 
